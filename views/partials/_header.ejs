@@ -1,0 +1,37 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+    <a class="navbar-brand">Wiki-Maps</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link">My Maps</a>
+        <a class="nav-item nav-link">Create New Map</a>
+      </div>
+    </div>
+
+        <form method="POST" action="/logout">
+        <!-- <label style="padding-right:25px; color: white; font-size:large;">Logged in as: </label> -->
+        <button type="submit" class="btn btn-dark">Logout</button>
+      </form>
+
+        <form method="get" action="/login">
+        <button type="submit" class="btn btn-dark">Login</button>
+      </form>
+
+        <form method="POST" action="/register">
+          <button type="submit" class="btn btn-dark">Register</button>
+        </form>
+
+
+  </nav>
+</header>
