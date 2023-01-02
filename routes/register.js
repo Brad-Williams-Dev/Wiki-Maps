@@ -7,31 +7,24 @@ router.get('/', (req, res) => {
 });
 
 
-router.post("/", (req, res) => {
-  registerUsers({ ...req.body })
-    .then(user => {
-      req.session.userId = user.id;
-      res.redirect('/');
+
+router.post('/', (req, res) => {
+ 
+ const  name = req.body.name
+ const email = req.body.email
+ const password = req.body.password
+
+  userQueries.registerUsers(name,email,password)
+    .then(data => {
+      console.log(data)
+      res.redirect('login');
     })
     .catch(err => {
       res
         .status(500)
         .json({ error: err.message });
     });
-});
 
-
-router.post('/', (req, res) => {
-  console.log('this is body ', req.body)
-  const name = 'Julian' 
-  const email = 'Julian@gmail.com' 
-  const password = '123julian' 
- 
-  userQueries.registerUsers(req.body)
-    .then(data => {
-    
-    })
-    res.redirect('login');
 
 })
 
