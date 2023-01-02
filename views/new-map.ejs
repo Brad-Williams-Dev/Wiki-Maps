@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create New Map</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous"
+  />
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+ integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+ crossorigin=""></script>
+ <link rel="stylesheet" href="/styles/main.css" />
+<link rel="stylesheet" href="/styles/layout.css" />
+  </head>
+  <body>
+    <%- include('partials/_header') %>
+    <div id="map"></div>
+
+    <div id="map1">
+
+      <div class="create-form">
+        <form class="form-class" action="/new-map" method="POST">
+          <div class="form-element">
+            <h4>Create your Map</h4>
+            <label for="title" class="form-label">Map Title:</label>
+            <input type="text" class="form-control" id="map-title" name="title" placeholder="Map title">
+          </div>
+          <div class="form-element">
+            <label for="Description" class="form-label">Map Description:</label>
+            <textarea type="text" class="form-control" id="map-description" name="description" placeholder="Description of your map..."></textarea>
+
+            <div>
+              <label for="longitude" class="form-label">Longitude:</label>
+              <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude"></input>
+            </div>
+
+            <div>
+              <label for="latitude" class="form-label">Latitude:</label>
+              <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude"></input>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Create Map</button>
+          </form>
+          </div>
+
+        </div>
+
+  </body>
+</html>
