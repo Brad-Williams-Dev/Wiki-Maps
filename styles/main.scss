@@ -8,10 +8,14 @@
 }
 
 #map {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   border: 1px solid black;
-  margin: auto;
   margin-top: 4em;
   height: 600px;
   width: 1000px;
 }
+
+
 
