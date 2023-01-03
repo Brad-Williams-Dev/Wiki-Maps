@@ -74,15 +74,15 @@
 
 
 <script>
-// $(document).ready(function() {
-  // const maps = $(".map-class")
-  // maps.each(function(index) {
-  //   const mapId = $( this ).attr("id")
-  //   const mapLat = $( this ).attr("data-lon")
-  //   const mapLon = $( this ).attr("data-lat")
-  //   initMap(Number(mapLat), Number(mapLon), mapId)
-  // });
-  // });
+$(document).ready(function() {
+  const maps = $(".map-class")
+  maps.each(function(index) {
+    const mapId = $( this ).attr("id")
+    const mapLat = $( this ).attr("data-lon")
+    const mapLon = $( this ).attr("data-lat")
+    initMap(Number(mapLat), Number(mapLon), mapId)
+  });
+  });
 </script>
 
 
