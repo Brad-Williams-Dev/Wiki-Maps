@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
     <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -14,9 +15,14 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
     <title>Wiki-Map</title>
+
   </head>
   <body>
     <%- include('partials/_header') %>
+
+    <span id="error" class="hide">
+      <span class="error-message"></span>
+    </span>
 
     <form id="login-box" method="POST" action="/login">
       <h3>Account Login</h3>
@@ -42,5 +48,6 @@
         <p>Don't have an account? <a href="/register">Register</a></p>
       </div>
     </form>
+
   </body>
 </html>
