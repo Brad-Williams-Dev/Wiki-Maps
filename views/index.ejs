@@ -13,7 +13,7 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous"
   />
-    
+
     <script src="/vendor/jquery-3.0.0.js"></script>
     <script defer src="/scripts/app.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
@@ -36,7 +36,7 @@
     <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="https://www.shareicon.net/data/512x512/2017/02/15/878685_user_512x512.png" alt="Card image cap">
       <div class="card-body">
-        <h2 class="card-title"></h2>
+        <h2 class="card-title"><%= %></h2>
         <table> # of Maps
           <li></li>
         </table>
@@ -45,33 +45,27 @@
         </table>
       </div>
     </div>
-
-    <div class="card" id="avail-maps" style="width: 18rem;">
-      <img class="card-img-top" src="https://www.kingsville.ca/en/our-community/resources/Maps/Maps.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Available Maps</h5>
-        <p class="card-text">List of available maps that you can view!</p>
-        <table>
-          <li></li>
-          <li></li>
-          <li></li>
-        </table>
+    <div class="list-group list-group-dark">
+      <div class="map-link">
+        <div>
+          <img src="https://i.stack.imgur.com/xLP06.png" alt="" class="map-img">
+          <span class="map-name">Map name</span>
+        </div>
+    </div>
+    <div class="map-link">
+      <div>
+        <img src="https://i.stack.imgur.com/xLP06.png" alt="" class="map-img">
+        <span class="map-name">Map name</span>
       </div>
     </div>
-
-
-    <div class="card" id="favorite-maps" style="width: 18rem;">
-      <img class="card-img-top" src="https://cdn.nerdschalk.com/wp-content/uploads/2022/03/favorite-logo-4.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Favourited Maps</h5>
-        <p class="card-text">List of all the maps you have favourited!</p>
-        <table>
-          <li></li>
-          <li></li>
-          <li></li>
-        </table>
+    <div class="map-link">
+      <div>
+        <img src="https://i.stack.imgur.com/xLP06.png" alt="" class="map-img">
+        <span class="map-name">Map name</span>
+      </div>
       </div>
     </div>
+   </div>
 
 </div>
 </div>
