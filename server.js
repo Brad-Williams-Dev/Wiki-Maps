@@ -68,17 +68,6 @@ app.use("/api/favourites", favouritesRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-// Delete after DB works ::
-const users = {
-  userRandomID: {
-    email: "user@example.com",
-    password: "purple-monkey-dinosaur",
-  },
-  user2RandomID: {
-    email: "user2@example.com",
-    password: "dishwasher-funk",
-  },
-};
 
 app.get("/", (req, res) => {
   const user = req.session.id;
@@ -228,7 +217,7 @@ app.post("/createmap", (req, res) => {
   const user_id = 1;
 
 
-  const id = generateRandomString()
+  const id = generateRandomString();
 
   cardDatabase[id] = {
     title,
@@ -236,9 +225,9 @@ app.post("/createmap", (req, res) => {
     longitude,
     latitude,
     id
-  }
+  };
 
-  res.redirect("/maps")
+  res.redirect("/maps");
 
 
   db.query(
