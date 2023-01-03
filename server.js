@@ -45,17 +45,19 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const loginRoutes = require('./routes/login');
+const logoutRoutes = require('./routes/logout');
 const registerRoutes = require('./routes/register');
 const newMapRoutes = require('./routes/new-map');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
+app.use('/register', registerRoutes);
+app.use('/login', loginRoutes);
+app.use('/logout', logoutRoutes);
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/login', loginRoutes);
-app.use('/register', registerRoutes);
 app.use('/new-map', newMapRoutes);
 // Note: mount other resources here, using the same pattern above
 
@@ -63,14 +65,21 @@ app.use('/new-map', newMapRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+// homepage redirects to maps
 app.get("/", (req, res) => {
-  const {userId} = req.session
-  if (!userId) {
-    return res.status(401).send('user is not logged in')
-  }
-  res.render("index");
+  res.redirect("/maps");
 
 });
+
+// opens the maps page
+app.get('/maps', (req, res) => {
+  const { userId } = req.session;
+  if (!userId) {
+    return res.status(401).send('user is not logged in');
+  }
+  res.render('index')
+})
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
