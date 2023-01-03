@@ -5,9 +5,17 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session')
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+
+  maxAge: 1 * 60 * 60 * 1000 // allow cookie to expire after 1 hr 
+}))
 
 
 
@@ -56,7 +64,12 @@ app.use('/new-map', newMapRoutes);
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
+  const {userId} = req.session
+  if (!userId) {
+    return res.status(401).send('user is not logged in')
+  }
   res.render("index");
+
 });
 
 app.listen(PORT, () => {

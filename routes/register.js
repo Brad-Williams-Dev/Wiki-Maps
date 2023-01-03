@@ -9,16 +9,13 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
- 
- const  name = req.body.name
- const email = req.body.email
- const password = req.body.password
-
+ const {name, email, password} = req.body
   userQueries.registerUsers(name,email,password)
     .then(data => {
       console.log(data)
-      res.redirect('login');
+      res.redirect('/login');
     })
+    
     .catch(err => {
       res
         .status(500)
