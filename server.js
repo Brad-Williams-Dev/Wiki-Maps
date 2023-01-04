@@ -265,15 +265,8 @@ app.post("/edit_map/:id", (req, res) => {
   const description = req.body.description;
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
-  // const created_on = Date().now();
-  // const user_id = 1;
 
-  // console.log(title);
   console.log(description);
-  // console.log(longitude);
-  // console.log(req.params);
-
-  // const id = cardDatabase[req.params.id];
 
   cardDatabase[req.params.id] = {
     title,
@@ -285,26 +278,16 @@ app.post("/edit_map/:id", (req, res) => {
 
   res.redirect("/maps");
 
-
-
-
-
-
-
-  // db.query(
-  //   `UPDATE maps (title, description, longitude, latitude, created_on, user_id)
-  // SET ($1, $2, $3, $4, $5, $6)
-  // RETURNING *;`,
-  //   [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id]
-  // )
-  //   .then((result) => result.rows[0])
-  //   .catch((err) => console.log(err.message));
-  // res.redirect("/maps");
+  db.query(
+    `UPDATE maps (title, description, longitude, latitude, created_on, user_id)
+  SET ($1, $2, $3, $4, $5, $6)
+  RETURNING *;`,
+    [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id]
+  )
+    .then((result) => result.rows[0])
+    .catch((err) => console.log(err.message));
+  res.redirect("/maps");
 });
-
-
-
-
 
 
 app.post("/delete/:id", (req, res) => {
