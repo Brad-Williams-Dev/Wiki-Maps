@@ -117,8 +117,12 @@ app.post("/logout", (req, res) => {
 
 app.get("/maps", (req, res) => {
   const user = req.session.id;
-
-  res.render("maps_index", { user: user });
+  db.query(`SELECT * FROM maps;`)
+    .then(data => {
+      const maps = data.rows;
+      res.json({ maps });
+    });
+  res.render("maps_index", { user: user, maps: maps });
 });
 
 

@@ -33,10 +33,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/taylornoj/wikimaps.git"
+    "url": ""
   },
   "bugs": {
-    "url": "https://github.com/taylornoj/wikimaps/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/taylornoj/wikimaps#readme"
+  "homepage": ""
 }
