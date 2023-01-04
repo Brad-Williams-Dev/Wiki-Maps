@@ -28,17 +28,20 @@
 
     <div class="map-cards">
 
-    <% for(let card in cards) { %>
+    <% for(let map in maps) { %>
     <div class="row">
       <div class="card" style="width: 18rem;">
-        <div class="map-class" data-lon=<%= cards[card].longitude %>
-          data-lat=<%= cards[card].latitude %> id=<%= card %>
+
+        <div class="map-class" data-lon=<%= map[maps].longitude %>
+          data-lat=<%= map[maps].latitude %> id=<%= map %>
           style="width: 100%; height: 300px"></div>
+
+
       <div class="card-body">
-        <h5 class="card-title"><%= cards[card].title %></h5>
-        <p class="card-text"><%= cards[card].description %></p>
+        <h5 class="card-title"><%= map[maps].title %></h5>
+        <p class="card-text"><%= map[maps].description %></p>
         <div class="mapbuttons">
-        <form method="GET" action="/edit_map/<%= cards[card].id %>">
+        <form method="GET" action="/edit_map/<%= map[maps].id %>">
           <button class="btn btn-primary" type="submit">
             Edit
           </button>
@@ -56,7 +59,7 @@
             }
           }
         </script>
-          <form method="POST" action="/delete/<%= cards[card].id %>">
+          <form method="POST" action="/delete/<%= map[maps].id %>">
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
         </div>

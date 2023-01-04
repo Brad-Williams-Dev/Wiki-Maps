@@ -3,5 +3,5 @@ INSERT INTO markers (title, description, image, longitude, latitude, user_id, ma
 INSERT INTO markers (title, description, image, longitude, latitude, user_id, map_id)
   VALUES ('Marker 2', 'Marker....', 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png','45.424721', '-75.695000', 1, 2);
 INSERT INTO markers (title, description, image, longitude, latitude, user_id, map_id)
-  VALUES ('Marker 3', 'Marker....', 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png','45.424721', '-75.695000', 3, 4);
+  VALUES ('Marker 3', 'Marker....', 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png','45.424721', '-75.695000', 3, 2);
 

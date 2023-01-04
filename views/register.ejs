@@ -20,34 +20,31 @@
   <body>
     <%- include('partials/_header') %>
 
-    <span id="error" class="hide">
-      <span class="error-message"></span>
-    </span>
 
     <form id="login-box" method="POST" action="/register">
       <h3>Register</h3>
 
        <!-- Name input -->
        <div class="form-outline mb-4">
-        <input type="text" name = "name" id="form2Example1" class="form-control" />
-        <label class="form-label" for="form2Example1">Name</label>
+        <input type="text" name = "name" for="name" id="form2Example1" class="form-control" />
+        <label class="form-label" for="name">Name</label>
       </div>
 
       <!-- Email input -->
       <div class="form-outline mb-4">
-        <input type="email" name = "email" id="form2Example1" class="form-control" />
-        <label class="form-label" for="form2Example1">Email address</label>
+        <input type="email" name = "email" for="email" id="form2Example1" class="form-control" />
+        <label class="form-label" for="email">Email address</label>
       </div>
 
       <!-- Password input -->
       <div class="form-outline mb-4">
-        <input type="password" name = "password" id="form2Example2" class="form-control" />
-        <label class="form-label" for="form2Example2">Password</label>
+        <input type="password" name = "password" for="password" id="form2Example2" class="form-control" />
+        <label class="form-label" for="password">Password</label>
       </div>
       </div>
 
       <!-- Submit button -->
-      <button type="submit" class="btn btn-secondary btn-block mb-4">Sign in</button>
+      <button type="submit" class="btn btn-secondary btn-block mb-4">Register</button>
 
       <!-- Register buttons -->
       <div class="text-center">

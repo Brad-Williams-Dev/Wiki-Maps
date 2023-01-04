@@ -54,6 +54,7 @@ const usersRoutes = require("./routes/users");
 const mapsRoutes = require("./routes/maps");
 const markersRoutes = require("./routes/markers");
 const favouritesRoutes = require("./routes/favourites");
+const { map } = require("jquery");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -85,7 +86,7 @@ app.post("/login", (req, res) => {
   res.redirect("/maps");
 });
 
-app.get("/register", (req, res) => {
+app.get("/register", (req, res) => { ///////////////////////
   const user = req.session.id;
   res.render("register", { user: user });
 });
@@ -108,7 +109,17 @@ app.post("/register", (req, res) => {
           .json({ error: err.message });
       });
   res.redirect("/login");
+  db.query(
+    `
+  INSERT INTO users (name, email, password)
+  VALUES ($1, $2, $3)
+  RETURNING *`,
+    [name, email, password]
+  )
+    .then((result) => result.rows[0])
+    .catch((err) => console.log(err.message));
 });
+
 
 // LogOut ::
 app.post("/logout", (req, res) => {
@@ -117,100 +128,17 @@ app.post("/logout", (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-////////////       TESTING!!!! ::::               ////////////////////////////////////
-
-
-
-
-
-const generateRandomString = function() {
-  const arr = [
-    "d87s8d",
-    "df923j",
-    "345gfg",
-    "345gdf",
-    "567ytr",
-    "34fdsf",
-    "34dfsf",
-    "34fknd",
-    "34sskf",
-    "34f32f",
-    "3dfdsf",
-    "34fsds",
-    "34fdsf",
-    "3d234f",
-    "34f5sf",
-    "df3fds",
-    "sd3dsf",
-    "756hsf",
-    "sdf345",
-    "344fds",
-  ];
-
-  let randomNum = Math.random() * 20;
-  let roundNumber = Math.floor(randomNum);
-
-  return arr[roundNumber];
-};
-
-
-
-
-
-
-
-const cardDatabase = {
-  b6UTxQ: {
-    userID: "aJ48lW",
-    title: "Roman's Recommended Views",
-    description:
-      "Check out this map for the best views Casablanca has to offer!",
-    longitude: 33.589886,
-    latitude: -7.603869,
-    id: "b6UTxQ"
-  },
-  b6UTxQ2: {
-    userID: "aJ48lW",
-    title: "Coolest filming locations in Toronto",
-    description:
-      "Places that movies have been filmed in Toronto.",
-    longitude: 43.6548871759463,
-    latitude: -79.38511745481695,
-    id: "b6UTxQ2"
-  },
-  b6UTxQ3: {
-    userID: "aJ48lW",
-    title: "My favorite coffee shops in London",
-    description:
-      "Best coffee shops to grab some Java, Mocha or Chai.",
-    longitude: 51.52858919673822,
-    latitude: -0.08181622051423204,
-    id: "b6UTxQ3"
-  },
-};
-
-
 app.get("/maps", (req, res) => {
   const user = req.session.id;
-  res.render("maps_index", { user: user, cards: cardDatabase });
+  db.query(`SELECT * FROM maps;`)
+  .then(data => {
+    const maps = data.rows;
+    // res.json({ maps });
+    res.render("maps_index", { user: user, maps:maps.maps });
+});
 });
 
 /////////////////////////////////////////////
-
-
-
-
 
 
 app.get("/createmap", (req, res) => {
@@ -219,7 +147,6 @@ app.get("/createmap", (req, res) => {
 });
 
 app.post("/createmap", (req, res) => {
-  console.log("title", req.body.title);
   const title = req.body.title;
   const description = req.body.description;
   const longitude = req.body.longitude;
