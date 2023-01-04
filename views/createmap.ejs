@@ -26,6 +26,7 @@
   <div id="map-box">
     <div id="map1" style="width: 1000px ; height: 750px"></div>
   </div>
+    <h3 id="info"></h3>
     <div class="create-pin-maps">
       <div class="create-form">
         <form class="form-class" action="/createmap" method="POST">
@@ -83,6 +84,19 @@
       center: lat_long_Ottawa
     };
     const map1 = new google.maps.Map(document.getElementById("map1"), coordsOttawa);
+
+    let markerOptions = {
+      position: new google.maps.LatLng(43.651070, -79.347015),
+      map: map1,
+      optimized: false,
+      draggable: true
+    };
+
+    let marker = new google.maps.Marker(markerOptions);
+
+    marker.addListener('click', (googleMapsEvents) => {
+      document.getElementById('info').innerHTML = 'latitude: ' + googleMapsEvents.latLng.lat() + 'longitude: ' + googleMapsEvents.latLng.lng();
+    })
 
     }
 
