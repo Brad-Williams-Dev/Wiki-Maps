@@ -109,15 +109,6 @@ app.post("/register", (req, res) => {
           .json({ error: err.message });
       });
   res.redirect("/login");
-  db.query(
-    `
-  INSERT INTO users (name, email, password)
-  VALUES ($1, $2, $3)
-  RETURNING *`,
-    [name, email, password]
-  )
-    .then((result) => result.rows[0])
-    .catch((err) => console.log(err.message));
 });
 
 
@@ -134,7 +125,8 @@ app.get("/maps", (req, res) => {
   .then(data => {
     const maps = data.rows;
     // res.json({ maps });
-    res.render("maps_index", { user: user, maps:maps.maps });
+    console.log(maps)
+    res.render("maps_index", { user: user, maps:maps });
 });
 });
 
@@ -155,15 +147,14 @@ app.post("/createmap", (req, res) => {
   const user_id = 1;
 
 
-  const id = generateRandomString();
 
-  cardDatabase[id] = {
-    title,
-    description,
-    longitude,
-    latitude,
-    id
-  };
+  // cardDatabase[id] = {
+  //   title,
+  //   description,
+  //   longitude,
+  //   latitude,
+  //   id
+  // };
 
   
   
