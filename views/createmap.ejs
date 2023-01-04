@@ -16,29 +16,17 @@
   <link rel="stylesheet" href="/styles/createmap.css" type="text/css" />
   <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
 
-
-
-
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
 
 </head>
-
 <body>
-
-
-
   <%- include('partials/_header') %>
-
-
-
-
-
   <main>
-
-
-    <div id="map1" style="width: 100%; height: 300px"></div>
-
+    <div id="main-box">
+  <div id="map-box">
+    <div id="map1" style="width: 1000px ; height: 750px"></div>
+  </div>
     <div class="create-pin-maps">
       <div class="create-form">
         <form class="form-class" action="/createmap" method="POST">
@@ -66,8 +54,7 @@
           </div>
         </div>
           </form>
-
-
+        </div>
   </main>
 
 <!-- TEST API -->

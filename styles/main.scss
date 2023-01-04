@@ -49,5 +49,17 @@ width: auto;
   margin-left: 25px;
 }
 
+#map-box{
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+  height: 750px;
+}
 
+#main-box {
+  display: flex;
+  justify-content: space-around;
+  margin-top:3em;
+}
 
