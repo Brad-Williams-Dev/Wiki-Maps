@@ -124,8 +124,6 @@ app.get("/maps", (req, res) => {
   db.query(`SELECT * FROM maps;`)
   .then(data => {
     const maps = data.rows;
-    // res.json({ maps });
-    console.log(maps)
     res.render("maps_index", { user: user, maps:maps });
 });
 });
@@ -143,20 +141,8 @@ app.post("/createmap", (req, res) => {
   const description = req.body.description;
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
-  // const created_on = Date().now();
   const user_id = 1;
 
-
-
-  // cardDatabase[id] = {
-  //   title,
-  //   description,
-  //   longitude,
-  //   latitude,
-  //   id
-  // };
-
-  
   
   db.query(
     `
@@ -173,20 +159,12 @@ app.post("/createmap", (req, res) => {
 });
 
 
-
-
-
-
-
-
 app.get("/edit_map/:id", (req, res) => {
   const user = req.session.id;
 
   const id = cardDatabase[req.params.id];
   res.render("edit_map", { user: user, cardDetails: id });
 });
-
-
 
 
 app.post("/edit_map/:id", (req, res) => {
