@@ -91,11 +91,22 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const newUser = {
-    email: req.body.email,
-    password: req.body.password,
-  };
-  users["newUserId"] = newUser;
+  name = req.body.name
+  email =  req.body.email
+  password = req.body.password
+  
+  db.query(
+    `
+  INSERT INTO users (name, email, password)
+  VALUES ($1, $2, $3)
+  RETURNING *
+  `, [name,email,password])
+
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   res.redirect("/login");
 });
 
@@ -227,19 +238,19 @@ app.post("/createmap", (req, res) => {
     id
   };
 
-  res.redirect("/maps");
-
-
+  
+  
   db.query(
     `
-  INSERT INTO maps (title, description, longitude, latitude, created_on, user_id)
-  VALUES ($1, $2, $3, $4, $5, $6)
-  RETURNING *`,
+    INSERT INTO maps (title, description, longitude, latitude, created_on, user_id)
+    VALUES ($1, $2, $3, $4, $5, $6)
+    `,
     [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id]
-  )
+    )
     .then((result) => result.rows[0])
     .catch((err) => console.log(err.message));
-
+    
+    res.redirect("/maps");
 
 });
 
@@ -296,6 +307,8 @@ app.post("/delete/:id", (req, res) => {
 
   res.redirect("/maps");
 });
+
+
 
 
 
