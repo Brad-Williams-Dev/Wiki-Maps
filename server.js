@@ -92,19 +92,23 @@ app.get("/register", (req, res) => { ///////////////////////
 });
 
 app.post("/register", (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-  res.redirect("/login");
+  name = req.body.name;
+  email = req.body.email;
+  password = req.body.password;
+
   db.query(
     `
   INSERT INTO users (name, email, password)
   VALUES ($1, $2, $3)
-  RETURNING *`,
-    [name, email, password]
-  )
-    .then((result) => result.rows[0])
-    .catch((err) => console.log(err.message));
+  RETURNING *
+  `, [name, email, password])
+
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  res.redirect("/login");
 });
 
 
@@ -120,11 +124,9 @@ app.get("/maps", (req, res) => {
   db.query(`SELECT * FROM maps;`)
     .then(data => {
       const maps = data.rows;
-      res.json({ maps });
+      res.render("maps_index", { user: user, maps: maps });
     });
-  res.render("maps_index", { user: user, maps: maps });
 });
-
 
 /////////////////////////////////////////////
 
@@ -139,37 +141,32 @@ app.post("/createmap", (req, res) => {
   const description = req.body.description;
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
-  // const created_on = Date().now();
   const user_id = 1;
 
-  res.redirect("/maps");
+
   db.query(
     `
-  INSERT INTO maps (title, description, longitude, latitude, created_on, user_id)
-  VALUES ($1, $2, $3, $4, $5, $6)
-  RETURNING *`,
+    INSERT INTO maps (title, description, longitude, latitude, created_on, user_id)
+    VALUES ($1, $2, $3, $4, $5, $6)
+    `,
     [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id]
   )
     .then((result) => result.rows[0])
     .catch((err) => console.log(err.message));
+
+  res.redirect("/maps");
+
 });
-
-
-
-
-
-
 
 
 app.get("/edit_map/:id", (req, res) => {
   const user = req.session.id;
-
-  const id = cardDatabase[req.params.id];
-  res.render("edit_map", { user: user, cardDetails: id });
+  db.query(`SELECT * FROM maps;`)
+    .then(data => {
+      const maps = data.rows;
+      res.render("edit_map", { user: user, maps: maps });
+    });
 });
-
-
-
 
 app.post("/edit_map/:id", (req, res) => {
   const title = req.body.title;
@@ -178,14 +175,6 @@ app.post("/edit_map/:id", (req, res) => {
   const latitude = req.body.latitude;
 
   console.log(description);
-
-  cardDatabase[req.params.id] = {
-    title,
-    description,
-    longitude,
-    latitude,
-    id: req.params.id
-  };
 
   res.redirect("/maps");
 
@@ -203,13 +192,22 @@ app.post("/edit_map/:id", (req, res) => {
 
 app.post("/delete/:id", (req, res) => {
 
-  delete cardDatabase[req.params.id];
+  const removeMapById = (id) => {
+    return db.query(
+      `DELETE FROM maps
+      WHERE id = $1`, [id]
+    )
+      .then((data) => {
+        return data.rows;
+      });
+  };
 
-  res.redirect("/maps");
+  removeMapById(req.params.id)
+    .then(() => {
+      res.redirect("/maps");
+    });
+
 });
-
-
-
 
 
 
