@@ -72,7 +72,11 @@ app.use("/api/favourites", favouritesRoutes(db));
 
 app.get("/", (req, res) => {
   const user = req.session.id;
-  res.render("index", { user: user });
+  db.query(`SELECT * FROM maps;`)
+    .then(data => {
+      const maps = data.rows;
+      res.render("index", { user: user, maps: maps });
+    });
 });
 
 app.get("/login", (req, res) => {
@@ -139,16 +143,17 @@ app.get("/createmap", (req, res) => {
 app.post("/createmap", (req, res) => {
   const title = req.body.title;
   const description = req.body.description;
+  const img_url = req.body.img_url;
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
   const user_id = 1;
 
   db.query(
     `
-    INSERT INTO maps (title, description, longitude, latitude, created_on, user_id)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    INSERT INTO maps (title, description,img_url, longitude, latitude, created_on, user_id)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     `,
-    [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id]
+    [title, description, img_url, longitude, latitude, "2021-03-11 09:30:00", user_id]
   )
     .then((result) => result.rows[0])
     .catch((err) => console.log(err.message));
@@ -160,15 +165,12 @@ app.post("/createmap", (req, res) => {
 
 app.get("/edit_map/:id", (req, res) => {
   const user = req.session.id;
-
-  db.query(`SELECT * FROM maps WHERE id=$1`, [req.params.id])
+  const id = req.params.id;
+  db.query(`SELECT * FROM maps WHERE id=$1`, [id])
     .then(data => {
-      const maps = data.rows;
-
-      res.render("edit_map", { user: user, maps: maps });
-      console.log(maps[0].title);
+      const map = data.rows[0];
+      res.render("edit_map", { user: user, map: map });
     });
-
 });
 
 app.post("/edit_map/:id", (req, res) => {
@@ -176,13 +178,15 @@ app.post("/edit_map/:id", (req, res) => {
   const description = req.body.description;
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
+  const img_url = req.body.img_url;
   const user_id = 1;
   const id = req.params.id;
-  db.query(
-    `UPDATE maps (title, description, longitude, latitude, created_on, user_id)
-  SET ($1, $2, $3, $4, $5, $6)
-  WHERE id=$7`,
-    [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id, id]
+  console.log(req.body);
+  console.log('thisisid', id);
+  db.query(`UPDATE maps
+  SET title =$1, description =$2,img_url=$3 longitude =$4, latitude =$5, user_id =$6
+  WHERE id=$7;`,
+    [title, description, img_url, longitude, latitude, user_id, id]
   )
     .then((result) => result.rows[0])
     .catch((err) => console.log(err.message));

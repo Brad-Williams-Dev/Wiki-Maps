@@ -41,6 +41,7 @@
 
 
       <div class="card-body">
+        <img src="<%= maps[map].img_url %>" alt="" style="width: 16rem;">
         <h5 class="card-title"><%= maps[map].title %></h5>
         <p class="card-text"><%= maps[map].description %></p>
         <div class="mapbuttons">
@@ -64,8 +65,10 @@
           <form method="POST"  action="/delete/<%= maps[map].id %>">
             <button class="btn btn-danger" type="submit">Delete</button>
           </form>
+
         </div>
       </div>
+
     </div>
   </div>
   <% } %>

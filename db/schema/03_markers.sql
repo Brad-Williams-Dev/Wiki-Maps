@@ -1,5 +1,3 @@
-
-
 DROP TABLE IF EXISTS markers CASCADE;
 
 CREATE TABLE markers (

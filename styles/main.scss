@@ -7,10 +7,15 @@
 
 #main-box {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-around;
 }
 
-#map1 {
 
+#login-box {
+  margin: auto;
+    border: 1px solid black;
+    width: 50%;
+    margin-top: 40px;
+    padding: 2em;
 }
+
