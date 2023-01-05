@@ -42,12 +42,12 @@
                 <input name="img_url" for="img_url" type="text" class="form-control" id="pin-img" placeholder="Enter Image URL" value="<%= map.img_url %>">
 
                 <div>
-                  <label for="latitude" class="form-label">Latitude:</label>
+                  <label for="latitude" class="form-label">Longitude:</label>
                   <input name="latitude" for="latitude" type="text" class="form-control" id="latitude" placeholder="Latitude" value="<%= map.latitude %>"></input>
                 </div>
 
                 <div>
-                  <label for="longitude" class="form-label">Longitude:</label>
+                  <label for="longitude" class="form-label">Latitude:</label>
                   <input name="longitude" for="longitude" type="text" class="form-control" id="longitude" placeholder="Longitude" value="<%= map.longitude %>"></input>
                 </div>
 
@@ -74,16 +74,29 @@
     zoom: 10,
   });
 
+  const contentString =
+    `<img src="<%= map.img_url  %>" style="height: 16em; width:16em;" >`
+    + `<p><%= map.title %></p>`;
+
+
+  const infowindow = new google.maps.InfoWindow({
+    content: contentString,
+    ariaLabel: "Uluru",
+  });
+
+
     const marker = new google.maps.Marker({
     position: { lat:mapLat, lng:mapLon },
     map,
+    title: "Uluru (Ayers Rock)",
   });
-
+  marker.addListener("click", () => {
+    infowindow.open({
+      anchor: marker,
+      map,
+    });
+  });
     }
-
-
-
-
 
     const map = $("#map-container")
 

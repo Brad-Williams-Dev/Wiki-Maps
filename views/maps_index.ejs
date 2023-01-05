@@ -76,7 +76,9 @@
 </div>
 
 </main>
-
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
+</script>
 <script>
 $(document).ready(function() {
   const maps = $(".map-class")
@@ -85,12 +87,16 @@ $(document).ready(function() {
     const mapLat = $( this ).attr("data-lon")
     const mapLon = $( this ).attr("data-lat")
     initMap(Number(mapLat), Number(mapLon), mapId)
+
   });
+
   });
+
+
+
+
   </script>
- <script async defer
- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
- </script>
+
 
 </body>
 
