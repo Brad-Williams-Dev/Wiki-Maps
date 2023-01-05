@@ -14,20 +14,21 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/createmap.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
-
-
-
-
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
 </head>
 <body>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
+    </script>
   <%- include('partials/_header') %>
   <main>
     <div id="main-box">
     <div id="map-box">
-      <div id="map1"</div>
+      <div class="map-class" data-lon=<%= maps.longitude %>
+        data-lat=<%= maps.latitude %> id=<%= maps.id %>
+        style="width: 800px; height: 600px">
+      </div>
     </div>
           <div class="pin-element create-pin-maps">
             <form class="form-class" action="" method="POST">
@@ -62,57 +63,17 @@
 
   </main>
 
-<!-- TEST API -->
-<div class="row">
-  <div class="col-3">
-    <div id="map1"></div>
-  </div>
-  <div class="col-3">
-    <div id="map2"></div>
-  </div>
-  <div class="col-3">
-    <div id="map3"></div>
-  </div>
-  <div class="col-3">
-    <div id="map4"></div>
-  </div>
-</div>
-
 <script>
-  function initMap() {
-    const zoom = 5;
-    const lat_long_Ottawa = { lat: 45.424721, lng: -75.695000 };
-    const lat_long_Toronto = { lat: 43.651070,lng: -79.347015 };
-    const lat_long_Moscow = { lat: 55.751244, lng: 37.618423 };
-    const lat_long_Casablanca = { lat: 33.589886, lng: -7.603869 };
-    const coordsOttawa = {
-      zoom: zoom,
-      center: lat_long_Ottawa
-    };
-    const map1 = new google.maps.Map(document.getElementById("map1"), coordsOttawa);
-    const coordsToronto = {
-      zoom: zoom,
-      center: lat_long_Toronto
-    }
-    const map2 = new google.maps.Map(document.getElementById("map2"), coordsToronto);
-    const coordsMoscow = {
-      zoom: zoom,
-      center: lat_long_Moscow
-    }
-    const map3 = new google.maps.Map(document.getElementById("map3"), coordsMoscow);
-    const coordsCasablanca = {
-      zoom: zoom,
-      center: lat_long_Casablanca
-    }
-    const map4 = new google.maps.Map(document.getElementById("map4"), coordsCasablanca);
-  }
-</script>
-
-<!-- FINISH TEST API-->
-
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap"
-  async defer></script>
+  $(document).ready(function() {
+    const maps = $(".map-class")
+    maps.each(function(index) {
+      const mapId = $( this ).attr("id")
+      const mapLat = $( this ).attr("data-lon")
+      const mapLon = $( this ).attr("data-lat")
+      initMap(Number(mapLat), Number(mapLon), mapId)
+    });
+    });
+    </script>
 
 </body>
 </html>

@@ -20,6 +20,9 @@
 
    </head>
 <body>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
+    </script>
   <%- include('partials/_header') %>
   <main>
   <div class="home-title">
@@ -32,24 +35,22 @@
     <div class="row">
       <div class="card" style="width: 18rem;">
 
-        <div class="map-class" data-lon=<%= map.longitude %>
-          data-lat=<%= map.latitude %> id=<%= map %>
+        <div class="map-class" data-lon=<%= maps[map].longitude %>
+          data-lat=<%= maps[map].latitude %> id=<%= map %>
           style="width: 100%; height: 300px">
-
 
         </div>
 
 
       <div class="card-body">
-        <h5 class="card-title"><%= map.title %></h5>
-        <p class="card-text"><%= map.description %></p>
+        <h5 class="card-title"><%= maps[map].title %></h5>
+        <p class="card-text"><%= maps[map].description %></p>
         <div class="mapbuttons">
-        <form method="GET" action="/edit_map/<%= map.id %>">
+        <form method="GET" action="/edit_map/<%= maps[map].id %>">
           <button class="btn btn-primary" type="submit">
             Edit
           </button>
         </form>
-        <!-- <a href="edit_map" class="btn btn-primary">Edit</a> -->
         <div class="heart-container">
           <i class="far fa-heart"></i>
         </div>
@@ -87,9 +88,7 @@ $(document).ready(function() {
   });
   </script>
 
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
-    </script>
+
 </body>
 
 

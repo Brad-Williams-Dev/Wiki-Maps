@@ -9,3 +9,11 @@
   padding: 2em;
   border: 2px solid gray;
 }
+
+#map1 {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
