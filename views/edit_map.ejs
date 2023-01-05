@@ -23,8 +23,8 @@
   <main>
     <div id="main-box">
     <div id="map-box">
-      <div class="map-class" data-lon=<%= maps.longitude %>
-        data-lat=<%= maps.latitude %> id=<%= maps %>
+      <div class="map-class" data-lon=<%= maps[0].longitude %>
+        data-lat=<%= maps[0].latitude %> id=<%= maps[0].id %>
         style="width: 800px; height: 600px">
       </div>
     </div>
@@ -32,10 +32,10 @@
             <form class="form-class" action="" method="POST">
               <h4>Edit a Marker 📍</h4>
               <label for="pinTitle" class="form-label">Edit Marker Title:</label>
-              <input name="title" for="title" type="text" class="form-control" id="pin-title" placeholder="Edit marker title" value="<%= maps.title %>">
+              <input name="title" for="title" type="text" class="form-control" id="pin-title" placeholder="Edit marker title" value="<%= maps[0].title %>">
               <div class="form-element">
                 <label for="pinDescription" class="form-label">Edit Marker Description:</label>
-                <textarea name="description" for="description" type="text" class="form-control" id="pin-description" placeholder="Edit description of your Marker..."><%= maps.description %></textarea>
+                <textarea name="description" for="description" type="text" class="form-control" id="pin-description" placeholder="Edit description of your Marker..."><%= maps[0].description %></textarea>
               </div>
               <div class="form-element">
                 <label for="pinPicture" class="form-label">Edit Marker Picture:</label>
@@ -43,12 +43,12 @@
 
                 <div>
                   <label for="longitude" class="form-label">Longitude:</label>
-                  <input name="longitude" for="longitude" type="text" class="form-control" id="longitude" placeholder="Longitude" value="<%= maps.longitude %>"></input>
+                  <input name="longitude" for="longitude" type="text" class="form-control" id="longitude" placeholder="Longitude" value="<%= maps[0].longitude %>"></input>
                 </div>
 
                 <div>
                   <label for="latitude" class="form-label">Latitude:</label>
-                  <input name="latitude" for="lat" type="text" class="form-control" id="latitude" placeholder="Latitude" value="<%= maps.latitude %>"></input>
+                  <input name="latitude" for="lat" type="text" class="form-control" id="latitude" placeholder="Latitude" value="<%= maps[0].latitude %>"></input>
                 </div>
                 <br>
 
@@ -60,21 +60,21 @@
 
 
   </main>
-
-<script>
-  $(document).ready(function() {
-    const maps = $(".map-class")
-    maps.each(function(index) {
-      const mapId = $( this ).attr("id")
-      const mapLat = $( this ).attr("data-lon")
-      const mapLon = $( this ).attr("data-lat")
-      initMap(Number(mapLat), Number(mapLon), mapId)
-    });
-    });
+  <script>
+    $(document).ready(function() {
+      const maps = $(".map-class")
+      maps.each(function(index) {
+        const mapId = $( this ).attr("id")
+        const mapLat = $( this ).attr("data-lon")
+        const mapLon = $( this ).attr("data-lat")
+        initMap(Number(mapLat), Number(mapLon), mapId)
+      });
+      });
+      </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
     </script>
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
-  </script>
+
 </body>
 </html>
 

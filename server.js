@@ -160,12 +160,15 @@ app.post("/createmap", (req, res) => {
 
 app.get("/edit_map/:id", (req, res) => {
   const user = req.session.id;
-  const id = req.params.id;
-  db.query(`SELECT * FROM maps WHERE id=$1`, [id])
+
+  db.query(`SELECT * FROM maps WHERE id=$1`, [req.params.id])
     .then(data => {
       const maps = data.rows;
+
       res.render("edit_map", { user: user, maps: maps });
+      console.log(maps[0].title);
     });
+
 });
 
 app.post("/edit_map/:id", (req, res) => {
