@@ -143,7 +143,6 @@ app.post("/createmap", (req, res) => {
   const latitude = req.body.latitude;
   const user_id = 1;
 
-
   db.query(
     `
     INSERT INTO maps (title, description, longitude, latitude, created_on, user_id)
@@ -169,29 +168,23 @@ app.get("/edit_map/:id", (req, res) => {
 });
 
 app.post("/edit_map/:id", (req, res) => {
+  const title = req.body.title;
+  const description = req.body.description;
+  const longitude = req.body.longitude;
+  const latitude = req.body.latitude;
+  const user_id = 1;
 
+  res.redirect("/maps");
 
-  const updateMapById = (id) => {
-    const title = req.body.title;
-    const description = req.body.description;
-    const longitude = req.body.longitude;
-    const latitude = req.body.latitude;
-    return db.query(
-      `UPDATE maps (title, description, longitude, latitude, created_on, user_id)
-      SET ($1, $2, $3, $4, $5, $6)
-      RETURNING *;`,
-      [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id]
-    )
-      .then((data) => {
-        return data.rows;
-      });
-
-    updateMapById(req.params.id)
-      .then(() => {
-        res.redirect("/maps");
-      });
-  };
-
+  db.query(
+    `UPDATE maps (title, description, longitude, latitude, created_on, user_id)
+  SET ($1, $2, $3, $4, $5, $6)
+  RETURNING *;`,
+    [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id]
+  )
+    .then((result) => result.rows[0])
+    .catch((err) => console.log(err.message));
+  res.redirect("/maps");
 });
 
 
