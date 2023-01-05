@@ -18,15 +18,13 @@
 
 </head>
 <body>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
-    </script>
+
   <%- include('partials/_header') %>
   <main>
     <div id="main-box">
     <div id="map-box">
       <div class="map-class" data-lon=<%= maps.longitude %>
-        data-lat=<%= maps.latitude %> id=<%= maps.id %>
+        data-lat=<%= maps.latitude %> id=<%= maps %>
         style="width: 800px; height: 600px">
       </div>
     </div>
@@ -50,7 +48,7 @@
 
                 <div>
                   <label for="latitude" class="form-label">Latitude:</label>
-                  <input name="latitude" for="latitude" type="text" class="form-control" id="latitude" placeholder="Latitude" value="<%= maps.latitude %>"></input>
+                  <input name="latitude" for="lat" type="text" class="form-control" id="latitude" placeholder="Latitude" value="<%= maps.latitude %>"></input>
                 </div>
                 <br>
 
@@ -74,7 +72,9 @@
     });
     });
     </script>
-
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap">
+  </script>
 </body>
 </html>
 

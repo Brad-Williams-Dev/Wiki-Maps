@@ -30,14 +30,14 @@
 
   <%- include('partials/_header') %>
 
-
-
-
-
   <main>
 
+    <div id="main-box">
+      <div id="map-box">
+        <div id="map1" style="width: 800px; height: 600px"></div>
+        </div>
+      </div>
 
-    <div id="map1" style="width: 100%; height: 300px"></div>
 
     <div class="create-pin-maps">
       <div class="create-form">
@@ -66,46 +66,10 @@
           </div>
         </div>
 
-
-
-          <!-- <div class="pin-element">
-            <form class="form-class" action="" method="">
-              <h4>Add a Marker 📍</h4>
-              <label for="pinTitle" class="form-label">Marker Title:</label>
-              <input type="text" class="form-control" id="pin-title" placeholder="Marker title">
-              <div class="form-element">
-                <label for="pinDescription" class="form-label">Marker Description:</label>
-                <textarea type="text" class="form-control" id="pin-description" placeholder="Description of your Marker..."></textarea>
-              </div>
-              <div class="form-element">
-                <label for="pinPicture" class="form-label">Marker Picture:</label>
-                <input type="text" class="form-control" id="pin-img" placeholder="Enter Image URL">
-                <div>
-                  <label for="longitude" class="form-label">Longitude:</label>
-                  <input type="text" class="form-control" id="longitude" placeholder="Longitude"></input>
-                </div>
-                <div>
-                  <label for="latitude" class="form-label">Latitude:</label>
-                  <input type="text" class="form-control" id="latitude" placeholder="Latitude"></input>
-                </div>
-                <br>
-                <button type="submit" class="btn btn-primary">Create Marker</button>
-              </div>
-            </div> -->
-
           </form>
 
 
   </main>
-
-
-
-
-
-
-
-
-
 
 
 <!-- TEST API -->
@@ -154,7 +118,7 @@
   }
 </script>
 
-<!-- FINISH TEST API-->
+
 
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi0UNccMZtRgqrzVxdyFxtulpy_amoMGY&callback=initMap"
