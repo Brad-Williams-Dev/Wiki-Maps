@@ -56,15 +56,18 @@
               <input type="text" class="form-control" id="img_url" name="img_url" placeholder="Image"></input>
             </div>
 
+
             <div>
-              <label for="longitude" class="form-label">Longitude:</label>
-              <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude"></input>
+              <label for="latitude" class="form-label">Longitude:</label>
+              <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude"></input>
             </div>
 
             <div>
-              <label for="latitude" class="form-label">Latitude:</label>
-              <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude"></input>
+              <label for="longitude" class="form-label">Latitude:</label>
+              <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude"></input>
             </div>
+
+
             <br>
             <button type="submit" class="btn btn-primary">Create Map</button>
           </form>
@@ -94,7 +97,7 @@
 
 <script>
   function initMap() {
-    const zoom = 5;
+    const zoom = 10;
     const lat_long_Ottawa = { lat: 45.424721, lng: -75.695000 };
     const lat_long_Toronto = { lat: 43.651070,lng: -79.347015 };
     const lat_long_Moscow = { lat: 55.751244, lng: 37.618423 };

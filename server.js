@@ -176,22 +176,26 @@ app.get("/edit_map/:id", (req, res) => {
 app.post("/edit_map/:id", (req, res) => {
   const title = req.body.title;
   const description = req.body.description;
+  const img_url = req.body.img_url;
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
-  const img_url = req.body.img_url;
   const user_id = 1;
-  const id = req.params.id;
-  console.log(req.body);
-  console.log('thisisid', id);
-  db.query(`UPDATE maps
-  SET title =$1, description =$2,img_url=$3 longitude =$4, latitude =$5, user_id =$6
-  WHERE id=$7;`,
-    [title, description, img_url, longitude, latitude, user_id, id]
-  )
-    .then((result) => result.rows[0])
-    .catch((err) => console.log(err.message));
 
-  res.redirect("/maps");
+  const editMapByID = id => {
+    return db.query(`UPDATE maps
+    SET title =$1, description =$2,img_url=$3, longitude =$4, latitude =$5, user_id =$6
+    WHERE id=$7;`,
+      [title, description, img_url, longitude, latitude, user_id, req.params.id]
+    )
+      .then((data) => data.rows)
+      .catch((err) => console.log(err.message));
+  };
+  editMapByID(req.params.id)
+    .then(() => {
+      res.redirect("/maps");
+    });
+
+
 });
 
 
