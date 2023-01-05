@@ -163,8 +163,8 @@ app.get("/edit_map/:id", (req, res) => {
   const id = req.params.id;
   db.query(`SELECT * FROM maps WHERE id=$1`, [id])
     .then(data => {
-      const maps = data.rows;
-      res.render("edit_map", { user: user, maps: maps });
+      const map = data.rows[0];
+      res.render("edit_map", { user: user, map: map });
     });
 });
 
@@ -175,11 +175,12 @@ app.post("/edit_map/:id", (req, res) => {
   const latitude = req.body.latitude;
   const user_id = 1;
   const id = req.params.id;
-  db.query(
-    `UPDATE maps (title, description, longitude, latitude, created_on, user_id)
-  SET ($1, $2, $3, $4, $5, $6)
-  WHERE id=$7`,
-    [title, description, longitude, latitude, "2021-03-11 09:30:00", user_id, id]
+  console.log(req.body)
+  console.log('thisisid', id)
+  db.query(`UPDATE maps
+  SET title =$1, description =$2, longitude =$3, latitude =$4, user_id =$5
+  WHERE id=$6;`,
+    [title, description, longitude, latitude, user_id, id]
   )
     .then((result) => result.rows[0])
     .catch((err) => console.log(err.message));
