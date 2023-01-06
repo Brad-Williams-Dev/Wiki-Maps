@@ -35,7 +35,7 @@
               <input name="title" for="title" type="text" class="form-control" id="pin-title" placeholder="Edit marker title" value="<%= map.title %>">
               <div class="form-element">
                 <label for="pinDescription" class="form-label">Edit Map Description:</label>
-                <input name="description" for="description" type="text" class="form-control" id="pin-description" placeholder="Edit description of your Marker..."><%= map.description %></input>
+                <input name="description" for="description" type="text" class="form-control" id="pin-description" placeholder="Edit description of your Marker..." value="<%= map.description %>"></input>
               </div>
               <div class="form-element">
                 <label for="pinPicture" class="form-label">Edit Map Picture:</label>
@@ -75,7 +75,7 @@
   });
 
   const contentString =
-    `<img src="<%= map.img_url  %>" style="height: 16em; width:16em;" >`
+    `<img src="<%= map.img_url  %>" style="height: 16em; width:16em;" />`
     + `<p><%= map.title %></p>`;
 
 
