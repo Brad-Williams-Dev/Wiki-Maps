@@ -185,7 +185,7 @@ app.post("/edit_map/:id", (req, res) => {
     return db.query(`UPDATE maps
     SET title =$1, description =$2,img_url=$3, longitude =$4, latitude =$5, user_id =$6
     WHERE id=$7;`,
-      [title, description, img_url, longitude, latitude, user_id, req.params.id]
+    [title, description, img_url, longitude, latitude, user_id, req.params.id]
     )
       .then((data) => data.rows)
       .catch((err) => console.log(err.message));

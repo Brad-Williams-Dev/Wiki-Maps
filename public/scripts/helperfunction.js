@@ -1,11 +1,11 @@
 $(function() {
   $(".heart-container").find(".fa-heart").click(function() {
     if($(this).hasClass("far")) {
-      $(this).removeClass("far")
-      $(this).addClass("fas")
+      $(this).removeClass("far");
+      $(this).addClass("fas");
     } else {
-      $(this).removeClass("fas")
-      $(this).addClass("far")
+      $(this).removeClass("fas");
+      $(this).addClass("far");
     }
   });
 });
